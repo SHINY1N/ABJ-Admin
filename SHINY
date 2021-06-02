@@ -1,0 +1,288 @@
+local Prefix = "/e /"
+
+local Players = game:GetService("Players")
+
+local Commands = {}
+
+Commands.freeze = function(Sender,Arguments)
+	local target = table.concat(Arguments," ")
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name:lower():sub(1,#target) == target:lower() then
+            if target ~= "others" then
+            local targetR = v.Name
+            game.ReplicatedStorage.Anchor:FireServer(game.Players[targetR].Character.Torso,true)
+            end
+        end
+    end
+    if target == "others" then
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            game.ReplicatedStorage.Anchor:FireServer(game.Players[v.Name].Character.Torso,true)
+        end
+    end
+    end
+end
+Commands.unfreeze = function(Sender,Arguments)
+	local target = table.concat(Arguments," ")
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name:lower():sub(1,#target) == target:lower() then
+            if target ~= "others" then
+            local targetR = v.Name
+            game.ReplicatedStorage.Anchor:FireServer(game.Players[targetR].Character.Torso,false)
+            end
+        end
+    end
+    if target == "others" then
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            game.ReplicatedStorage.Anchor:FireServer(game.Players[v.Name].Character.Torso,false)
+        end
+    end
+    end
+end
+Commands.say = function(Sender,Arguments)
+	local msg = table.concat(Arguments," ")
+    local A_1 = game.Players.LocalPlayer.Character:FindFirstChild("Head")
+    local A_2 = msg
+    local A_3 = "rbxassetid://0"
+    local A_4 = 11111
+    local A_5 = 11111
+    local A_6 = 0
+    local Event = game:GetService("ReplicatedStorage").Taunt
+    Event:FireServer(A_1, A_2, A_3, A_4, A_5, A_6)
+end
+Commands.ff = function(Sender,Arguments)
+    local size = table.concat(Arguments," ")
+    if not game.Workspace:FindFirstChild("519ffj10sg1nslkzngf10") then
+    local forcefield = Instance.new("Part",game.Workspace)
+    forcefield.Name = "519ffj10sg1nslkzngf10"
+    forcefield.Anchored = false
+    forcefield.CanCollide = false
+    forcefield.Material = Enum.Material.ForceField
+    forcefield.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+    forcefield.Transparency = 0.7
+    forcefield.BrickColor = BrickColor.new("Toothpaste")
+    forcefield.Size = Vector3.new(10*size,10*size,10*size)
+    local weld = Instance.new("Weld",forcefield)
+    weld.Part0 = forcefield
+    weld.Part1 = game.Players.LocalPlayer.Character.HumanoidRootPart
+    forcefield.Touched:connect(function(hit)
+        if hit.Parent:FindFirstChild("Humanoid") and hit.Parent ~= game.Players.LocalPlayer.Character then
+            local targetR = hit.Parent
+            local A_1 = targetR:FindFirstChild("Humanoid")
+            local A_2 = CFrame.new(215.567932, 199.109344, 220.248947, 0.794619381, -0.586957216, -0.155116558, 0.201544017, 0.496048301, -0.844580531, 0.57267797, 0.639857292, 0.512467325)
+            local A_3 = 0.1
+            local A_4 = 0.25
+            local A_5 = Vector3.new(99999999999999, 99999999999999, 99999999999999)
+            local A_6 = "rbxassetid://241837157"
+            local A_7 = 0.075
+            local A_8 = Color3.new(255, 255, 255)
+            local A_9 = "rbxassetid://260430079"
+            local A_10 = 0.9
+            local A_11 = 0.18
+            local Event = game:GetService("ReplicatedStorage").Damage
+            Event:FireServer(A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10, A_11)
+            wait(.5)
+        end
+    end)
+    end
+end
+Commands.unff = function(Sender,Arguments)
+    if game.Workspace:FindFirstChild("519ffj10sg1nslkzngf10") then
+        game.Workspace["519ffj10sg1nslkzngf10"]:Destroy()
+    end
+end
+Commands.speed = function(Sender,Arguments)
+    local speed = table.concat(Arguments," ")
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = speed
+end
+Commands.jumppower = function(Sender,Arguments)
+    local JumpPower = table.concat(Arguments," ")
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = JumpPower
+end
+Commands.gui = function(Sender,Arguments)
+    loadstring(game:HttpGet("https://pastebin.com/raw/BssGGsfW", true))()
+end
+Commands.music = function(Sender,Arguments)
+	local id = table.concat(Arguments," ")
+    local A_1 = game.Players.LocalPlayer.Character:FindFirstChild("Head")
+    local A_2 = " "
+    local A_3 = "rbxassetid://"..id
+    local A_4 = 11111
+    local A_5 = 11111
+    local A_6 = 0
+    local Event = game:GetService("ReplicatedStorage").Taunt
+    Event:FireServer(A_1, A_2, A_3, A_4, A_5, A_6)
+end
+Commands.godmode = function(Sender,Arguments)
+    game.ReplicatedStorage.MaxHealthChange:FireServer(10000000000000)
+    local A_1 = game.Players.LocalPlayer.Character.Humanoid
+    local A_2 = CFrame.new(-6.81358242, 200.858002, 142.885925, -0.885562241, 0.282340407, -0.368867457, 0.165158778, -0.550821185, -0.81811887, -0.4341681, -0.78541702, 0.441155493)
+    local A_3 = 1000000000000000000000
+    local A_4 = 0
+    local A_6 = "rbxassetid://245751634"
+    local A_7 = 0.075
+    local A_8 = Color3.new(255, 255, 0)
+    local A_9 = "rbxassetid://2914074987"
+    local A_10 = 2
+    local A_11 = 0.22
+    local Event = game:GetService("ReplicatedStorage").Heal5
+    Event:FireServer(A_1, A_2, A_3, A_4, A_6, A_7, A_8, A_9, A_10, A_11)
+end
+Commands.goto = function(Sender,Arguments)
+	local target = table.concat(Arguments," ")
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name:lower():sub(1,#target) == target:lower() then
+            local targetR = v.Name
+            game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame =
+            game.Players[targetR].Character.HumanoidRootPart.CFrame
+        end
+    end
+end
+Commands.kill = function(Sender,Arguments)
+	local target = table.concat(Arguments," ")
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name:lower():sub(1,#target) == target:lower() then
+            if target ~= "others" then
+            local targetR = v.Name
+            local A_1 = game.Players[targetR].Character:FindFirstChild("Humanoid")
+            local A_2 = CFrame.new(215.567932, 199.109344, 220.248947, 0.794619381, -0.586957216, -0.155116558, 0.201544017, 0.496048301, -0.844580531, 0.57267797, 0.639857292, 0.512467325)
+            local A_3 = 500
+            local A_4 = 0.25
+            local A_5 = Vector3.new(0, 0, 0)
+            local A_6 = "rbxassetid://241837157"
+            local A_7 = 0.075
+            local A_8 = Color3.new(255, 255, 255)
+            local A_9 = "rbxassetid://260430079"
+            local A_10 = 0.9
+            local A_11 = 0.18
+            local Event = game:GetService("ReplicatedStorage").Damage2
+            for count = 1,20 do
+                Event:FireServer(A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10, A_11)
+                wait()
+            end
+            end
+        end
+    end
+    if target == "others" then
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            local targetR = v.Name
+            local A_1 = game.Players[targetR].Character:FindFirstChild("Humanoid")
+            local A_2 = CFrame.new(215.567932, 199.109344, 220.248947, 0.794619381, -0.586957216, -0.155116558, 0.201544017, 0.496048301, -0.844580531, 0.57267797, 0.639857292, 0.512467325)
+            local A_3 = 500
+            local A_4 = 0.25
+            local A_5 = Vector3.new(0, 0, 0)
+            local A_6 = "rbxassetid://241837157"
+            local A_7 = 0.075
+            local A_8 = Color3.new(255, 255, 255)
+            local A_9 = "rbxassetid://260430079"
+            local A_10 = 0.9
+            local A_11 = 0.18
+            local Event = game:GetService("ReplicatedStorage").Damage2
+            for count = 1,20 do
+                Event:FireServer(A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10, A_11)
+                wait()
+            end
+        end
+    end
+    end
+end
+Commands.explode = function(Sender,Arguments)
+	local target = table.concat(Arguments," ")
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name:lower():sub(1,#target) == target:lower() then
+            if target ~= "others" then
+            local targetR = v.Name
+            local A_1 = game.Players[targetR].Character.HumanoidRootPart.Position
+            local Event = game:GetService("ReplicatedStorage").TestingRemote
+            for count = 1,5 do
+                Event:FireServer(A_1)
+                wait()
+            end
+            end
+        end
+    end
+    if target == "others" then
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            local targetR = v.Name
+            local A_1 = game.Players[targetR].Character.HumanoidRootPart.Position
+            local Event = game:GetService("ReplicatedStorage").TestingRemote
+            for count = 1,5 do
+                Event:FireServer(A_1)
+                wait()
+            end
+        end
+    end
+    end
+end
+Commands.fling = function(Sender,Arguments)
+	local target = table.concat(Arguments," ")
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name:lower():sub(1,#target) == target:lower() then
+            if target ~= "others" then
+            local targetR = v.Name
+            local A_1 = game.Players[targetR].Character:FindFirstChild("Humanoid")
+            local A_2 = CFrame.new(215.567932, 199.109344, 220.248947, 0.794619381, -0.586957216, -0.155116558, 0.201544017, 0.496048301, -0.844580531, 0.57267797, 0.639857292, 0.512467325)
+            local A_3 = 0.1
+            local A_4 = 0.25
+            local A_5 = Vector3.new(99999999999999, 99999999999999, 99999999999999)
+            local A_6 = "rbxassetid://241837157"
+            local A_7 = 0.075
+            local A_8 = Color3.new(255, 255, 255)
+            local A_9 = "rbxassetid://260430079"
+            local A_10 = 0.9
+            local A_11 = 0.18
+            local Event = game:GetService("ReplicatedStorage").Damage
+            Event:FireServer(A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10, A_11)
+            end
+        end
+    end
+    if target == "others" then
+    for i,v in pairs(game.Players:GetPlayers()) do 
+        if v.Name ~= game.Players.LocalPlayer.Name then
+            local targetR = v.Name
+            local A_1 = game.Players[targetR].Character:FindFirstChild("Humanoid")
+            local A_2 = CFrame.new(215.567932, 199.109344, 220.248947, 0.794619381, -0.586957216, -0.155116558, 0.201544017, 0.496048301, -0.844580531, 0.57267797, 0.639857292, 0.512467325)
+            local A_3 = 0.1
+            local A_4 = 0.25
+            local A_5 = Vector3.new(99999999999999, 99999999999999, 99999999999999)
+            local A_6 = "rbxassetid://241837157"
+            local A_7 = 0.075
+            local A_8 = Color3.new(255, 255, 255)
+            local A_9 = "rbxassetid://260430079"
+            local A_10 = 0.9
+            local A_11 = 0.18
+            local Event = game:GetService("ReplicatedStorage").Damage
+            Event:FireServer(A_1, A_2, A_3, A_4, A_5, A_6, A_7, A_8, A_9, A_10, A_11)
+        end
+    end
+    end
+end
+local function ParseMessage(Player,Message)
+	Message = string.lower(Message)
+	local PrefixMatch = string.match(Message,"^"..Prefix)
+	
+	if PrefixMatch then
+		Message = string.gsub(Message,PrefixMatch,"",1)
+		local Arguments = {}
+		
+		for Argument in string.gmatch(Message,"[^%s]+") do
+			table.insert(Arguments,Argument)
+		end
+		
+		local CommandName = Arguments[1]
+		table.remove(Arguments,1)
+		local CommandFunc = Commands[CommandName]
+		
+		if CommandFunc ~= nil then
+			CommandFunc(Player,Arguments)
+		end
+	end
+end
+
+game.Players.LocalPlayer.Chatted:Connect(function(Message,Recipient)
+    local Player = game.Players.LocalPlayer
+    ParseMessage(Player,Message)
+end)
